@@ -37,6 +37,9 @@ The time complexity of Dijkstra is O(n + mlog n), and this should be the worst c
 
 Space complexity should be fairly trivial, given the graph can, I think, be implicit: There is no reason to store the graph in any data structure, since neighboring nodes and edge weights can be easily computed.
 
+## Language
+This project will be implemented with Java as per standard course requirements.
+
 ## Sources
 - Tira course materials, Tirakirja
 - http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html - Resource on pathfinding and A*
