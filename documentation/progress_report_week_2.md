@@ -7,7 +7,7 @@
 - I documented the code I wrote with Javadocs.
 - I wrote unit tests for most of the code that exists so far (though not the classes in the Data package, since they're trivial data containers), though tests for the Graph class are not yet exhaustive since I didn't have time to finish its functionality.
 
-Currently the program doesn't actually do anything, but logic for the graph itself is more or less in place, along with all the infrastructure it needs. I had hoped to get something running this week, but that will have to wait until week 3. I think I have a grasp now of how I can begin to solve the actual pathfinding problem so I'm optimistic I can get something running.
+Currently the program doesn't actually do anything, but logic for the graph itself is more or less in place (which turned out to be a more complex problem than implementing some pathfinding algorithm is likely to be), along with all the infrastructure it needs. I had hoped to get something running this week, but that will have to wait until week 3. I think I have a grasp now of how I can begin to solve the actual pathfinding problem so I'm optimistic I can get something running.
 
 ## Questions
 - I am not yet assigning edge weights to the graph. I think I have the right idea with generating nodes on the fly, and now I just need to give them weighs with whatever cost function I decide to have. I'm not 100% sure about how this will work yet though.
