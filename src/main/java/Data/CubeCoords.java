@@ -1,12 +1,12 @@
 package Data;
 
-public class Vector {
-    
+public class CubeCoords {
+
     public final int x;
     public final int z;
     public final int y;
 
-    public Vector(int x, int z, int y) {
+    public CubeCoords(int x, int z, int y) {
         this.x = x;
         this.z = z;
         this.y = y;
@@ -14,10 +14,10 @@ public class Vector {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.x;
-        hash = 67 * hash + this.z;
-        hash = 67 * hash + this.y;
+        int hash = 3;
+        hash = 97 * hash + this.x;
+        hash = 97 * hash + this.z;
+        hash = 97 * hash + this.y;
         return hash;
     }
 
@@ -32,7 +32,7 @@ public class Vector {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vector other = (Vector) obj;
+        final CubeCoords other = (CubeCoords) obj;
         if (this.x != other.x) {
             return false;
         }
@@ -44,7 +44,5 @@ public class Vector {
         }
         return true;
     }
-    
-    
-    
+
 }

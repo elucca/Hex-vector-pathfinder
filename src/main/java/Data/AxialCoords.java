@@ -1,11 +1,11 @@
 package Data;
 
-public class AxialCoord {
+public class AxialCoords {
 
     public final int q;
     public final int r;
 
-    public AxialCoord(int q, int r) {
+    public AxialCoords(int q, int r) {
         this.q = q;
         this.r = r;
     }
@@ -29,7 +29,7 @@ public class AxialCoord {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AxialCoord other = (AxialCoord) obj;
+        final AxialCoords other = (AxialCoords) obj;
         if (this.q != other.q) {
             return false;
         }

@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Node {
 
-    private final AxialCoord coords;
-    private final Vector vector;
+    private final AxialCoords coords;
+    private final CubeCoords vector;
     private final Node previous;
 
-    public Node(AxialCoord coords, Vector vector, Node previous) {
+    public Node(AxialCoords coords, CubeCoords vector, Node previous) {
         this.coords = coords;
         this.vector = vector;
         this.previous = previous;
@@ -45,6 +45,18 @@ public class Node {
             return false;
         }
         return true;
+    }
+
+    public AxialCoords getCoords() {
+        return coords;
+    }
+
+    public CubeCoords getVector() {
+        return vector;
+    }
+
+    public Node getPrevious() {
+        return previous;
     }
 
 }
