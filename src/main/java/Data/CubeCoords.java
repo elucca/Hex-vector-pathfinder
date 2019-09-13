@@ -60,4 +60,11 @@ public class CubeCoords {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "(" + x + ", " + z + ", " + y + ")";
+    }
+    
+    
+
 }

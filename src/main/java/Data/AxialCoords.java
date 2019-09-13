@@ -57,4 +57,10 @@ public class AxialCoords {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "(" + q + ", " + r + ')';
+    }
+    
+
 }

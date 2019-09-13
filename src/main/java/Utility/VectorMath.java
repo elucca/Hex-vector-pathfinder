@@ -12,8 +12,8 @@ public class VectorMath {
      * @param vector
      * @return 
      */
-    public static double Magnitude(CubeCoords vector) {
-        return Math.sqrt(vector.x + vector.z + vector.y);
+    public static double magnitude(CubeCoords vector) {
+        return Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.z, 2) + Math.pow(vector.y, 2));
     }
     
     /**
@@ -22,7 +22,7 @@ public class VectorMath {
      * @param b
      * @return The sum of vectors a and b.
      */
-    public static CubeCoords Sum(CubeCoords a, CubeCoords b) {
+    public static CubeCoords sum(CubeCoords a, CubeCoords b) {
         return new CubeCoords(a.x + b.x, a.z + b.z, a.y + b.y);
     }
 }
