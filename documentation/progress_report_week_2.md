@@ -2,8 +2,8 @@
 
 ## What has happened
 
-- I started on the program's core functionality. Thus far however it's just infrastructure.
-- I did further thinking on what my graph should be like, and have a good sense of how it should be implemented now.
+- I started on the program's core functionality. Thus far however it's just infrastructure - most of the graph's functionality, infrastructure for hex coordinates and coordinate transforms and a bit of vector math.
+- I did further thinking on what my graph should be like, and have a good sense of how its remaining functionality should be implemented now.
 - I documented the code I wrote with Javadocs.
 - I wrote unit tests for most of the code that exists so far (though not the classes in the Data package, since they're trivial data containers), though tests for the Graph class are not yet exhaustive since I didn't have time to finish its functionality.
 
