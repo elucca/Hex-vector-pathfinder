@@ -7,10 +7,20 @@ import Utility.VectorMath;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the graph for pathfinding. The graph represents the state space of a a particular 
+ * spaceship on a hex grid, moving with Newtonian velocity vectors. In particular, graph nodes are 
+ * made up of each combination of hex coordinates and movement vectors, as limited by constructor 
+ * parameters.
+ * 
+ * The coordinate system for the hex grid is axial, with the q (column) axis horizontal and the 
+ * vertical r (row) axis tilted to the left in order to fit the hexes.
+ * Hexes are pointy-topped.
+ * 
+ * The graph itself is implicit, i.e. it is not stored in any data structure, but generated on the
+ * fly.
+ */
 public class Graph {
-    // Coordinate system is axial, with the Q axis tilted to the right. Hexes are
-    // assumed to be oriented pointy-side up.
-
     private final int mapSizeQ;
     private final int mapSizeR;
     private final int maxVelocity;
@@ -18,15 +28,35 @@ public class Graph {
     private int timeMul;
     private int deltaVMul;
 
-    public Graph(int mapSizeQ, int mapSizeR, int maxVelocity) {
+    /**
+     * Constructs a graph instance representing the state space of a spaceship on the hex grid. In 
+     * order for the graph to have a finite size, map dimensions and velocity vector magnitude need 
+     * an upper bound.
+     * 
+     * @param mapSizeQ The number of hex columns on the map.
+     * @param mapSizeR The number of hex rows on the map.
+     * @param maxVelocity The maximum allowable velocity (velocity vector magnitude) for the ship.
+     * @param timeMul Multiplier weighing how much time spent (i.e. turns, or state transitions) is
+     * weighed by the cost function assigning weighs to graph edges.
+     * @param deltaVMul Multiplier weighing how much delta-v spend is weighed by the cost function.
+     */
+    public Graph(int mapSizeQ, int mapSizeR, int maxVelocity, int timeMul, int deltaVMul) {
         this.mapSizeQ = mapSizeQ;
         this.mapSizeR = mapSizeR;
         this.maxVelocity = maxVelocity;
+        
+        this.timeMul = timeMul;
+        this.deltaVMul = deltaVMul;
     }
 
+    /**
+     * Finds the neighbors of the given node and returns a list of them.
+     * Todo: Assign edge weights per cost function multipliers.
+     * 
+     * @param node The node to find the neighbors of.
+     * @return A list of nodes neighboring the given node.
+     */
     public List<Node> findNeighbors(Node node) {
-        // Finds/creates neighbords of a given node.
-        // Todo: Assign edge weights.
         // Todo: Break this up and make it more readable.
         CubeCoords[] directions = new CubeCoords[]{
             new CubeCoords(1, -1, 0),
@@ -58,6 +88,13 @@ public class Graph {
         return neighbors;
     }
 
+    /**
+     * Checks if a node generated while generating neighbors is actually valid, i.e. if it should
+     * exist according to the graph's map size and maximum velocity parameters.
+     * 
+     * @param node The node to be validated.
+     * @return Whether the node exists.
+     */
     private boolean nodeExists(Node node) {
         // This assumes a rhombus-shaped map unlike the reference image in docs.
         // Later I want a rectangular map.
