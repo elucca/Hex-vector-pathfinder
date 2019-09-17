@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The intent of the project is to invent pathfinding on a hexagonal grid with Newtonian movement - a spaceship accelerating and decelerating to make it to a destination. A challenge is that I will have to account for inertia. Further, I want to not only find a path to a particular grid coordinate, but to find a path there such that the spaceship has a given velocity vector on arrival. For example, "get to this hex and stop" (or in other words, "get to hex (x,y,z) with a vector of (0,0,0)") and "fly past this hex at high speed" are meaningfully very different goals, and I want to discriminate between them. 
+The intent of the project is to implement pathfinding on a hexagonal grid with Newtonian movement - a spaceship accelerating and decelerating to make it to a destination. A challenge is that I will have to account for inertia. Further, I want to not only find a path to a particular grid coordinate, but to find a path there such that the spaceship has a given velocity vector on arrival. For example, "get to this hex and stop" (or in other words, "get to hex (x,y,z) with a vector of (0,0,0)") and "fly past this hex at high speed" are meaningfully very different goals, and I want to discriminate between them. 
 
 Something to note is that a shortest path in this kind of space is somewhat ambiguous: Do we want to optimize for the shortest time to make it to the goal, or the least velocity changes needed? (in physical terms, delta-v, or more or less, fuel spent) The program should be parameterized so as to be capable of finding paths optimizing either goal, or some compromise between them.
 
