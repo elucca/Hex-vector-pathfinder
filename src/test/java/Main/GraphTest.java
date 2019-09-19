@@ -26,7 +26,7 @@ public class GraphTest {
         }
 
         for (AxialCoords hex : hexesOnMap) {
-            assertTrue(graph.nodeExists(new Node(hex, new CubeCoords(0, 0, 0), null)));
+            assertTrue(graph.nodeExists(new Node(hex, new CubeCoords(0, 0, 0), null, 0)));
         }
     }
 
@@ -37,9 +37,9 @@ public class GraphTest {
         int mapSizeR = 6;
         Graph graph = new Graph(mapSizeQ, mapSizeR, 10, 1, 1);
         
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(-1, 0), new CubeCoords(0, 0, 0), null)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(7, 2), new CubeCoords(0, 0, 0), null)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(1, -1), new CubeCoords(0, 0, 0), null)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(1, 7), new CubeCoords(0, 0, 0), null)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(-1, 0), new CubeCoords(0, 0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(7, 2), new CubeCoords(0, 0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(1, -1), new CubeCoords(0, 0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(1, 7), new CubeCoords(0, 0, 0), null, 0)));
     }
 }
