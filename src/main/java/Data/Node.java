@@ -35,10 +35,17 @@ public class Node {
         int hash = 7;
         hash = 71 * hash + Objects.hashCode(this.coords);
         hash = 71 * hash + Objects.hashCode(this.vector);
-        hash = 71 * hash + Objects.hashCode(this.previous);
         return hash;
     }
 
+    /**
+     * Returns whether the given node is equal to this node. Two nodes are considered equal if their
+     * hex coordinate and vector are equal, i.e. whether they are, in the implicit graph, the same
+     * node. 
+     * 
+     * @param obj The other node to be compared for equality.
+     * @return Whether the nodes are equal.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -55,9 +62,6 @@ public class Node {
             return false;
         }
         if (!Objects.equals(this.vector, other.vector)) {
-            return false;
-        }
-        if (!Objects.equals(this.previous, other.previous)) {
             return false;
         }
         return true;
