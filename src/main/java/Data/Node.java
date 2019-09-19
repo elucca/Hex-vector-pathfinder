@@ -31,6 +31,13 @@ public class Node {
     }
 
     @Override
+    public String toString() {
+        return "Node{" + "coords=" + coords + ", vector=" + vector + ", costSoFar=" + costSoFar + '}';
+    }
+    
+    
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 71 * hash + Objects.hashCode(this.coords);

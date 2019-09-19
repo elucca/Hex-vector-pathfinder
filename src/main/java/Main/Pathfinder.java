@@ -26,7 +26,7 @@ public class Pathfinder {
     public Node Dijkstra(Graph graph, Node start, Node goal) {
         this.comparator = new DijkstraComparator();
         this.graph = graph;
-        
+
         PriorityQueue<Node> queue = new PriorityQueue<>(comparator);
         Set visited = new HashSet<Node>();
 
@@ -38,19 +38,18 @@ public class Pathfinder {
 
             if (node != null && !visited.contains(node)) {
                 visited.add(node);
-                
+
                 if (node.equals(goal)) {
                     return node;
                 }
-                
+
                 enqueueNeighbors(queue, node);
             }
-
         }
 
         return null;
     }
-    
+
     private void enqueueNeighbors(PriorityQueue<Node> queue, Node node) {
         queue.addAll(graph.findNeighbors(node));
     }

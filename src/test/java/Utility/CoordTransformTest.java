@@ -18,8 +18,8 @@ public class CoordTransformTest {
         AxialCoords c2 = new AxialCoords(-4, -2);
         AxialCoords c3 = new AxialCoords(0, 0);
         
-        assertEquals(new CubeCoords(2, 4, -6), CoordTransform.axialToCube(c1));
-        assertEquals(new CubeCoords(-4, -2, 6), CoordTransform.axialToCube(c2));
+        assertEquals(new CubeCoords(2, -6, 4), CoordTransform.axialToCube(c1));
+        assertEquals(new CubeCoords(-4, 6, -2), CoordTransform.axialToCube(c2));
         assertEquals(new CubeCoords(0, 0, 0), CoordTransform.axialToCube(c3));
     }
     

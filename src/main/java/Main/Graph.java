@@ -101,6 +101,7 @@ public class Graph {
         }
 
         // Node(AxialCoords coords, CubeCoords vector, Node previous, int costSoFar)
+        System.out.println("Neighbors: " + neighbors);
         return neighbors;
     }
 

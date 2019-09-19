@@ -32,6 +32,6 @@ public class CoordTransform {
         int x = axialCoords.q;
         int z = axialCoords.r;
         int y = -x - z;
-        return new CubeCoords(x, z, y);
+        return new CubeCoords(x, y, z);
     }
 }
