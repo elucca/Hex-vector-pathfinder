@@ -16,7 +16,6 @@ public class Main {
         Node start = new Node(new AxialCoords(0, 0), new CubeCoords(0, 0, 0), null, 0);
         Node goal = new Node(new AxialCoords(5, 5), new CubeCoords(0, 0, 0), null, 0);
         
-        graph.findNeighbors(new Node(new AxialCoords(3, 1), new CubeCoords(0, -2, 2), null, 0));
-        //System.out.println(pathfinder.Dijkstra(graph, start, goal));
+        System.out.println(pathfinder.Dijkstra(graph, start, goal));
     }
 }

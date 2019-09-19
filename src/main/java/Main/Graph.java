@@ -83,13 +83,6 @@ public class Graph {
         // if it exists.
         CubeCoords destination = VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector());
 
-        System.out.println("coords: " + node.getCoords());
-        System.out.println("cubecoords: " + CoordTransform.axialToCube(node.getCoords()));
-        System.out.println("vector: " + node.getVector());
-        System.out.println("sum of coords and vector: " + VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector()));
-        System.out.println("destination: " + destination);
-        System.out.println("destination in axial: " + CoordTransform.cubeToAxial(destination));
-
         Node potentialNeighbor = new Node(CoordTransform.cubeToAxial(destination), node.getVector(), node, node.getCostSoFar() + neighborCost(0));
         if (nodeExists(potentialNeighbor)) {
             neighbors.add(potentialNeighbor);
@@ -106,8 +99,6 @@ public class Graph {
             }
         }
 
-        // Node(AxialCoords coords, CubeCoords vector, Node previous, int costSoFar)
-        System.out.println("Neighbors: " + neighbors);
         return neighbors;
     }
 
