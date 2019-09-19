@@ -81,10 +81,16 @@ public class Graph {
 
         // The node the ship gets to with the current vector is always a neighbor,
         // if it exists.
-        AxialCoords destination = CoordTransform.cubeToAxial(
-                VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector()));
+        CubeCoords destination = VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector());
 
-        Node potentialNeighbor = new Node(destination, node.getVector(), node, neighborCost(0));
+        System.out.println("coords: " + node.getCoords());
+        System.out.println("cubecoords: " + CoordTransform.axialToCube(node.getCoords()));
+        System.out.println("vector: " + node.getVector());
+        System.out.println("sum of coords and vector: " + VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector()));
+        System.out.println("destination: " + destination);
+        System.out.println("destination in axial: " + CoordTransform.cubeToAxial(destination));
+
+        Node potentialNeighbor = new Node(CoordTransform.cubeToAxial(destination), node.getVector(), node, node.getCostSoFar() + neighborCost(0));
         if (nodeExists(potentialNeighbor)) {
             neighbors.add(potentialNeighbor);
         }
@@ -92,9 +98,9 @@ public class Graph {
         for (CubeCoords direction : neighborDirections) {
             // All these coord transforms are a mess, refactor to overload the math methods to accept
             // either.
-            destination = CoordTransform.cubeToAxial(VectorMath.sum(CoordTransform.axialToCube(destination), direction));
+            CubeCoords newDestination = VectorMath.sum(destination, direction);
 
-            potentialNeighbor = new Node(destination, VectorMath.sum(node.getVector(), direction), node, neighborCost(1));
+            potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination), VectorMath.sum(node.getVector(), direction), node, node.getCostSoFar() + neighborCost(1));
             if (nodeExists(potentialNeighbor)) {
                 neighbors.add(potentialNeighbor);
             }

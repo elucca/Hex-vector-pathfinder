@@ -56,7 +56,7 @@ public class GraphTest {
     public void findNeighborsTestFullSet() {
         Graph graph = new Graph(10, 10, 5, 1, 1);
         // Node comfortably in the middle of the graph.
-        Node node = new Node(new AxialCoords(3, 1), new CubeCoords(0, 2, 0), null, 0);
+        Node node = new Node(new AxialCoords(3, 1), new CubeCoords(0, -2, 2), null, 0);
         
         // This test case is painstakingly worked out on paper.
         AxialCoords[] correctHexCoords = new AxialCoords[] {

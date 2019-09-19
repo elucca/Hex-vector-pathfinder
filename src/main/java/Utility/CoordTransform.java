@@ -17,7 +17,7 @@ public class CoordTransform {
      */
     public static AxialCoords cubeToAxial(CubeCoords cubeCoords) {
         int q = cubeCoords.x;
-        int r = cubeCoords.z;
+        int r = cubeCoords.y;
         return new AxialCoords(q, r);
     }
 
