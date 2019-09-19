@@ -16,6 +16,14 @@ public class Main {
         Node start = new Node(new AxialCoords(0, 0), new CubeCoords(0, 0, 0), null, 0);
         Node goal = new Node(new AxialCoords(5, 5), new CubeCoords(0, 0, 0), null, 0);
         
-        System.out.println(pathfinder.Dijkstra(graph, start, goal));
+        Node found = pathfinder.Dijkstra(graph, start, goal);
+        
+        System.out.println("Path, end to start: ");
+        Node node = found;
+        while (node != null) {
+            System.out.print(node);
+            System.out.println(", velocity: " + VectorMath.magnitude(node.getVector()));
+            node = node.getPrevious();
+        }
     }
 }
