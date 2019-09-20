@@ -39,15 +39,10 @@ public class PathfinderTest {
 
         Node foundGoal = pathfinder.Dijkstra(graph, start, goal);
 
-        // Path from start to finish
-        List<Node> path = new ArrayList<>();
-
         Node node = foundGoal;
-        while (node != null) {
-            if (node.getPrevious() != null) {
-                List<Node> neighbors = graph.findNeighbors(node.getPrevious());
-                assertTrue(neighbors.contains(node));
-            }
+        while (node.getPrevious() != null) {
+            List<Node> neighbors = graph.findNeighbors(node.getPrevious());
+            assertTrue(neighbors.contains(node));
             node = node.getPrevious();
         }
 
