@@ -22,3 +22,5 @@ The pathfinder can currently be used to find paths where the ship starts from a 
 
 - Make the pathfinding work in a general case. It's very hard to estimate if this is a small fix, or if it requires major rethinking. It could take me an hour or it could take me whole week!
 - If I get the pathfinding to work, implement A* and begin experimenting with different heuristics.
+
+Time spent: ~16 hours
