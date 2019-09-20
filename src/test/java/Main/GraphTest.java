@@ -34,7 +34,7 @@ public class GraphTest {
         }
 
         for (AxialCoords hex : hexesOnMap) {
-            assertTrue(graph.nodeExists(new Node(hex, new CubeCoords(0, 0, 0), null, 0)));
+            assertTrue(graph.nodeExists(new Node(hex, new CubeCoords(0, 1, 1), null, 0)));
         }
     }
 

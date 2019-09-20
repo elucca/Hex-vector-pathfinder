@@ -93,6 +93,7 @@ public class Graph {
             // either.
             CubeCoords newDestination = VectorMath.sum(destination, direction);
 
+            // 
             potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination), VectorMath.sum(node.getVector(), direction), node, node.getCostSoFar() + neighborCost(1));
             if (nodeExists(potentialNeighbor)) {
                 neighbors.add(potentialNeighbor);

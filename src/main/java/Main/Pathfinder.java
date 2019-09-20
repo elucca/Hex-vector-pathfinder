@@ -38,7 +38,7 @@ public class Pathfinder {
 
             if (node != null && !visited.contains(node)) {
                 visited.add(node);
-
+                
                 if (node.equals(goal)) {
                     return node;
                 }
