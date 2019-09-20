@@ -68,10 +68,9 @@ public class Graph {
      * (those in the neighborDirections array)
      *
      * Todo: Allow larger vector changes up to some limits. Currently it's hardcoded to 0 (if vector
-     * isn't changed) or 1 (if vector is changed.)
-     * Todo: Think how to handle if the path
-     * goes out of the map. This is the case when there are no neighbors. Todo: Clean this up and
-     * maybe break it up to make it more readable.
+     * isn't changed) or 1 (if vector is changed.) Todo: Think how to handle if the path goes out of
+     * the map. This is the case when there are no neighbors. Todo: Clean this up and maybe break it
+     * up to make it more readable.
      *
      * @param node The node to find the neighbors of.
      * @return A list of nodes neighboring the given node.
@@ -107,7 +106,9 @@ public class Graph {
      * Checks if a node generated while generating neighbors is actually valid, i.e. if it should
      * exist according to the graph's map size and maximum velocity parameters.
      *
-     * Currently assumes a rhombus-shaped map. Todo: Change to assume a rectangular map instead.
+     * Currently assumes a rhombus-shaped map. Todo: Change to assume a rectangular map instead. In
+     * a rectangular map, there are as many r-rows as the map's r-size. For each r-row, there exist
+     * q-columns from -r/2 (rounded down) to -r/2 + mapSizeQ.
      *
      * @param node The node to be validated.
      * @return Whether the node exists.
@@ -117,11 +118,18 @@ public class Graph {
             return false;
         }
 
+        int q = node.getCoords().q;
+        int r = node.getCoords().r;
+        if (r >= mapSizeR || r < 0 || q < -r / 2 || q >= -r / 2 + mapSizeQ) {
+            return false;
+        }
+
+        /* If map is rhombus-shaped (to be removed, or moved elsewhere)
         if (node.getCoords().q + 1 > mapSizeQ || node.getCoords().r + 1 > mapSizeR
                 || node.getCoords().q < 0 || node.getCoords().r < 0) {
             return false;
         }
-
+         */
         return true;
     }
 

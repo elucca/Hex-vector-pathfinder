@@ -15,7 +15,6 @@ public class Main {
         
         Node start = new Node(new AxialCoords(0, 0), new CubeCoords(0, 0, 0), null, 0);
         Node goal = new Node(new AxialCoords(5, 5), new CubeCoords(0, 1, 1), null, 0);
-        System.out.println(CoordTransform.cubeToAxial(new CubeCoords(0, 1, 1)));
         
         Node found = pathfinder.Dijkstra(graph, start, goal);
         
