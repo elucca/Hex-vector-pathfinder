@@ -28,7 +28,7 @@ public class Pathfinder {
         this.graph = graph;
 
         PriorityQueue<Node> queue = new PriorityQueue<>(comparator);
-        Set visited = new HashSet<Node>();
+        Set visited = new HashSet<>();
 
         queue.add(start);
 
@@ -46,6 +46,8 @@ public class Pathfinder {
                 enqueueNeighbors(queue, node);
             }
         }
+        
+        System.out.println(visited.size());
 
         return null;
     }
