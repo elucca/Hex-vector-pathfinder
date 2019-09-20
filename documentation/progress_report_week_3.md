@@ -11,7 +11,7 @@
 
 ## Cool stuff
 
-The pathfinder can currently be used to find paths where the ship starts from a standstill, flies to the destination and stops there, with Newtonian physics. It's quite neat to see how if you set the pathfinder to minimize time spent and ignore delta-v spent it accelerates to the midpoint, and decelerates from there. If you instead set it to minimize delta-v spent and ignore time spent, it accelerates once to a minimum velocity, drifts all the way to the destination and brakes there. Using both multipliers makes it use some compromise - spent some dV accelerating, drift some of the way there, then brake.
+The pathfinder can currently be used to find paths where the ship starts from a standstill, flies to the destination and stops there, with Newtonian physics. It's quite neat to see how if you set the pathfinder to minimize time spent and ignore delta-v spent it accelerates to the midpoint, and decelerates from there. If you instead set it to minimize delta-v spent and ignore time spent, it accelerates once to a minimum velocity, drifts all the way to the destination and brakes there. Using both multipliers makes it use some compromise - spend some dV accelerating, drift some of the way there, then brake.
 
 ## Questions
 
