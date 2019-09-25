@@ -5,6 +5,8 @@
  */
 package Main;
 
+import Pathfinder.Pathfinder;
+import Pathfinder.Graph;
 import Data.AxialCoords;
 import Data.CubeCoords;
 import Data.Node;

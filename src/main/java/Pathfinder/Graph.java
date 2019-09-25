@@ -1,4 +1,4 @@
-package Main;
+package Pathfinder;
 
 import Data.AxialCoords;
 import Data.CubeCoords;

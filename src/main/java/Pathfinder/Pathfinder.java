@@ -1,5 +1,6 @@
-package Main;
+package Pathfinder;
 
+import Pathfinder.Graph;
 import Data.DijkstraComparator;
 import Data.Node;
 import java.util.HashSet;
