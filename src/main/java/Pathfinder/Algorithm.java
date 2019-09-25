@@ -1,7 +1,6 @@
-
 package Pathfinder;
 
-enum Algorithm {
+public enum Algorithm {
     BFS,
-    DIJKSTRA    
+    DIJKSTRA
 }
