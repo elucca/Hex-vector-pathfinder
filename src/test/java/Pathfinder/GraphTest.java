@@ -1,4 +1,4 @@
-package Main;
+package Pathfinder;
 
 import Pathfinder.Graph;
 import Data.AxialCoords;
