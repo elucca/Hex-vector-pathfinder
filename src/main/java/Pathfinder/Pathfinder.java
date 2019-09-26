@@ -6,6 +6,7 @@ import Data.Node;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -46,46 +47,11 @@ public class Pathfinder {
         this.graph = graph;
 
         switch (algorithm) {
-            case BFS:
-                return BFS(graph, start, goal);
             case DIJKSTRA:
                 return Dijkstra(graph, start, goal);
             default:
                 return null;
         }
-    }
-
-    /**
-     * An implementation of breadth-first search to find the shortes tpath on the given graph.
-     *
-     * @param graph The graph on which the algorithm runs.
-     * @param start The starting node.
-     * @param goal The goal node.
-     * @return The goal node, including where it was reached from, if it is reachable, null
-     * otherwise.
-     */
-    public Node BFS(Graph graph, Node start, Node goal) {
-        Queue<Node> queue = new ArrayDeque<>();
-        Set visited = new HashSet<>();
-
-        queue.add(start);
-
-        Node node = null;
-        while (!queue.isEmpty()) {
-            node = queue.poll();
-
-            if (node != null && !visited.contains(node)) {
-                visited.add(node);
-
-                if (node.equals(goal)) {
-                    return node;
-                }
-
-                enqueueNeighbors(queue, node);
-            }
-        }
-
-        return null;
     }
 
     /**

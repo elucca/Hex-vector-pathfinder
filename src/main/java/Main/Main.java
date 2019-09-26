@@ -14,11 +14,11 @@ public class Main {
     public static void main(String[] args) {
         // Temporarily experimenting with pathfinding by hardcoding it there. Later, take user
         // input in some better form.
-        Graph graph = new Graph(11, 11, 10, 1, 0);
+        Graph graph = new Graph(100, 100, 100, 0, 10);
         Pathfinder pathfinder = new Pathfinder(graph);
 
-        Node start = new Node(new AxialCoords(2, 0), new CubeCoords(0, 0, 0), null, 0);
-        Node goal = new Node(new AxialCoords(0, 4), new CubeCoords(0, 0, 0), null, 0);
+        Node start = new Node(new AxialCoords(2, 3), new CubeCoords(0, 0, 0), null, 0);
+        Node goal = new Node(new AxialCoords(60, 73), new CubeCoords(3, -3, 0), null, 0);
 
         Node foundDijkstra = pathfinder.findPath(start, goal, Algorithm.DIJKSTRA);
 
@@ -29,17 +29,6 @@ public class Main {
             System.out.println(", velocity: " + VectorMath.magnitude(dijkstraNode.getVector()));
             dijkstraNode = dijkstraNode.getPrevious();
         }
-        
-        System.out.println("");
 
-        Node foundBFS = pathfinder.findPath(start, goal, Algorithm.BFS);
-
-        System.out.println("BFS path, end to start: ");
-        Node BFSnode = foundBFS;
-        while (BFSnode != null) {
-            System.out.print(BFSnode + ", vector as axial: " + CoordTransform.cubeToAxial(BFSnode.getVector()));
-            System.out.println(", velocity: " + VectorMath.magnitude(BFSnode.getVector()));
-            BFSnode = BFSnode.getPrevious();
-        }
     }
 }
