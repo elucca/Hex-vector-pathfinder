@@ -34,7 +34,7 @@ public class PathfinderTest {
     @Test
     public void foundPathIsValid() {
         Graph graph = new Graph(10, 10, 5, 1, 1);
-        Pathfinder pathfinder = new Pathfinder();
+        Pathfinder pathfinder = new Pathfinder(graph);
 
         Node start = new Node(new AxialCoords(0, 0), new CubeCoords(0, 0, 0), null, 0);
         Node goal = new Node(new AxialCoords(5, 0), new CubeCoords(0, 0, 0), null, 0);
