@@ -9,6 +9,8 @@ import Data.Node;
 import Utility.CoordTransform;
 import Utility.VectorMath;
 import Pathfinder.Algorithm;
+import PerformanceTests.PerformanceTester;
+import PerformanceTests.TestPath;
 import Utility.MinHeap;
 import java.util.Comparator;
 
@@ -17,11 +19,11 @@ public class Main {
     public static void main(String[] args) {
         // Temporarily experimenting with pathfinding by hardcoding it there. Later, take user
         // input in some better form.
-        Graph graph = new Graph(10, 10, 10, 1, 1);
+        Graph graph = new Graph(100, 100, 30, 1, 1);
         Pathfinder pathfinder = new Pathfinder(graph);
 
         Node start = new Node(new AxialCoords(2, 3), new CubeCoords(0, 0, 0), null, 0);
-        Node goal = new Node(new AxialCoords(4, 2), new CubeCoords(1, -1, 0), null, 0);
+        Node goal = new Node(new AxialCoords(24, 30), new CubeCoords(3, -3, 0), null, 0);
 
         Node foundDijkstra = pathfinder.findPath(start, goal, Algorithm.DIJKSTRA);
 
@@ -33,6 +35,17 @@ public class Main {
             dijkstraNode = dijkstraNode.getPrevious();
         }
         
+        System.out.println("");
+
+        // Performance testing
+        System.out.println("Algorithm run times: ");
+        TestPath[] testBattery = {new TestPath(start, goal)};
+        PerformanceTester performanceTester = new PerformanceTester(graph, testBattery);
+        performanceTester.test();
+    }
+
+    /*
+        // Temp heap testing
         System.out.println("");
         System.out.println("---");
         System.out.println("");
@@ -49,6 +62,5 @@ public class Main {
         while (!heap.isEmpty()) {
             System.out.println(heap.delMin());
         }
-
-    }
+     */
 }

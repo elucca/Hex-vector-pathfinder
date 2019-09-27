@@ -62,7 +62,6 @@ public class Pathfinder {
      * @return The goal node, including where it was reached from, if it is reachable, null
      * otherwise.
      */
-    /*
     public Node Dijkstra(Graph graph, Node start, Node goal) {
         Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
         Set visited = new HashSet<>();
@@ -86,7 +85,8 @@ public class Pathfinder {
 
         return null;
     }
-     */
+    
+    /*
     public Node Dijkstra(Graph graph, Node start, Node goal) {
         //Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
         MinHeap heap = new MinHeap(10000000, new DijkstraComparator());
@@ -111,6 +111,7 @@ public class Pathfinder {
 
         return null;
     }
+    */
 
     /**
      * Adds the neighbors of the given node to the collection, which is used by a pathfinding
