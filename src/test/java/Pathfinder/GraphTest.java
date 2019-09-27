@@ -43,6 +43,11 @@ public class GraphTest {
                 hexesOnMap.add(hexCoords);
             }
         }
+        
+        for (AxialCoords axialCoords : hexesOnMap) {
+            Node node = new Node(axialCoords, new CubeCoords(0, 0, 0), null, 0);
+            assertTrue(graph.nodeExists(node));
+        }
     }
 
     @Test
