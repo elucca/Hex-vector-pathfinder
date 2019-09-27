@@ -66,16 +66,15 @@ public class MinHeap {
         if (heapSize >= maxSize) {
             return;
         }
-
+        
         heapSize++;
-        heap[heapSize] = node;
         int i = heapSize;
-
-        // while i < parent(i)
-        while (comparator.compare(heap[i], heap[parent(i)]) == -1) {
-            swap(i, parent(i));
+        
+        while (i > 1 && parent(i) != -1 && comparator.compare(node, heap[parent(i)]) == -1) {
+            heap[i] = heap[parent(i)];
             i = parent(i);
         }
+        heap[i] = node;
     }
 
     /**
@@ -96,8 +95,8 @@ public class MinHeap {
     private void heapify(int i) {
         // If node is not a leaf and is larger than either of its children
         if (!isLeaf(i)) {
-            if (comparator.compare(heap[i], heap[left(i)]) == 1
-                    || comparator.compare(heap[i], heap[right(i)]) == 1) {
+            if (left(i) != -1 && comparator.compare(heap[i], heap[left(i)]) == 1
+                    || left(i) != -1 && comparator.compare(heap[i], heap[right(i)]) == 1) {
                 // If left child is smaller than right child
                 if (comparator.compare(heap[left(i)], heap[right(i)]) == -1) {
                     swap(i, left(i));
@@ -106,7 +105,6 @@ public class MinHeap {
                     swap(i, right(i));
                     heapify(right(i));
                 }
-
             }
         }
     }
@@ -118,7 +116,12 @@ public class MinHeap {
      * @return The index of the parent of the node with the given index.
      */
     private int parent(int i) {
-        return i / 2;
+        int parentIndex = i / 2;
+        if (parentIndex >= heap.length || parentIndex < 0) {
+            return -1;
+        }
+
+        return parentIndex;
     }
 
     /**
@@ -128,7 +131,12 @@ public class MinHeap {
      * @return The index of the left child of the node with the given index. child doesn't exist.
      */
     private int left(int i) {
-        return 2 * i;
+        int leftIndex = 2 * i;
+        if (leftIndex >= heap.length || leftIndex < 0) {
+            return -1;
+        }
+
+        return leftIndex;
     }
 
     /**
@@ -138,7 +146,12 @@ public class MinHeap {
      * @return The index of the right child of the node with the given index.
      */
     private int right(int i) {
-        return 2 * i + 1;
+        int rightIndex = 2 * i + 1;
+        if (rightIndex >= heap.length || rightIndex < 0) {
+            return -1;
+        }
+
+        return rightIndex;
     }
 
     /**
