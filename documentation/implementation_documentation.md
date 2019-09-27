@@ -8,7 +8,7 @@ The problem the program solves is described in detail in the [project specificat
 
 ### The hex grid
 
-![Hex grid](documentation/hex_grid_reference.png)
+![Hex grid](hex_grid_reference.png)
 
 The hex grid used for pathfinding is defined by specifying the q and r dimensions (as in the above image) in number of hexes. The map is rectangular in shape. It is implemented implicitly: If a given hex is about to be reached by the pathfinding algorithm, the graph object checks if its coordinates lay on the map as defined by its dimensions.
 
