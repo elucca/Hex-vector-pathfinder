@@ -14,11 +14,11 @@ public class Main {
     public static void main(String[] args) {
         // Temporarily experimenting with pathfinding by hardcoding it there. Later, take user
         // input in some better form.
-        Graph graph = new Graph(100, 100, 20, 1, 1);
+        Graph graph = new Graph(10, 10, 10, 1, 1);
         Pathfinder pathfinder = new Pathfinder(graph);
 
         Node start = new Node(new AxialCoords(2, 3), new CubeCoords(0, 0, 0), null, 0);
-        Node goal = new Node(new AxialCoords(60, 73), new CubeCoords(3, -3, 0), null, 0);
+        Node goal = new Node(new AxialCoords(4, 2), new CubeCoords(1, -1, 0), null, 0);
 
         Node foundDijkstra = pathfinder.findPath(start, goal, Algorithm.DIJKSTRA);
 

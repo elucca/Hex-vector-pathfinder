@@ -11,9 +11,17 @@ public class DijkstraComparator implements Comparator<Node> {
     
     @Override
     public int compare(Node node1, Node node2) {
+        if (node1 == null) {
+            return -1;
+        }
+        
+        if (node2 == null) {
+            return 1;
+        }
+        
         int node1Cost = node1.getCostSoFar();
         int node2Cost = node2.getCostSoFar();
-                
+        
         if (node1Cost == node2Cost) {
             return 0;
         }

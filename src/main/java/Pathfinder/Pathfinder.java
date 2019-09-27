@@ -2,8 +2,10 @@ package Pathfinder;
 
 import Data.DijkstraComparator;
 import Data.Node;
+import Utility.MinHeap;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -60,6 +62,7 @@ public class Pathfinder {
      * @return The goal node, including where it was reached from, if it is reachable, null
      * otherwise.
      */
+    /*
     public Node Dijkstra(Graph graph, Node start, Node goal) {
         Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
         Set visited = new HashSet<>();
@@ -83,6 +86,31 @@ public class Pathfinder {
 
         return null;
     }
+     */
+    public Node Dijkstra(Graph graph, Node start, Node goal) {
+        //Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
+        MinHeap heap = new MinHeap(10000000, new DijkstraComparator());
+        Set visited = new HashSet<>();
+
+        heap.insert(start);
+
+        Node node = null;
+        while (!heap.isEmpty()) {
+            node = heap.delMin();
+
+            if (node != null && !visited.contains(node)) {
+                visited.add(node);
+
+                if (node.equals(goal)) {
+                    return node;
+                }
+
+                heapNeighbors(heap, node);
+            }
+        }
+
+        return null;
+    }
 
     /**
      * Adds the neighbors of the given node to the collection, which is used by a pathfinding
@@ -95,6 +123,13 @@ public class Pathfinder {
      */
     private void enqueueNeighbors(Collection<Node> collection, Node node) {
         collection.addAll(graph.findNeighbors(node));
+    }
+    
+    private void heapNeighbors(MinHeap heap, Node node) {
+        List<Node> neighbors = graph.findNeighbors(node);
+        for (Node neighbor : neighbors) {
+            heap.insert(neighbor);
+        }
     }
 
 }
