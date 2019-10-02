@@ -85,8 +85,9 @@ public class Pathfinder {
 
         return null;
     }
-    
+
     /*
+    // Commented out for now since the heap implementation doesn't work yet.
     public Node Dijkstra(Graph graph, Node start, Node goal) {
         //Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
         MinHeap heap = new MinHeap(10000000, new DijkstraComparator());
@@ -111,8 +112,7 @@ public class Pathfinder {
 
         return null;
     }
-    */
-
+     */
     /**
      * Adds the neighbors of the given node to the collection, which is used by a pathfinding
      * algorithm to pick nodes to be processed. (For example, a stack for a priority queue.) The
@@ -125,12 +125,14 @@ public class Pathfinder {
     private void enqueueNeighbors(Collection<Node> collection, Node node) {
         collection.addAll(graph.findNeighbors(node));
     }
-    
+
+    /*
+    // Commented out for now since the heap implementation doesn't work yet.
     private void heapNeighbors(MinHeap heap, Node node) {
         List<Node> neighbors = graph.findNeighbors(node);
         for (Node neighbor : neighbors) {
             heap.insert(neighbor);
         }
     }
-
+     */
 }
