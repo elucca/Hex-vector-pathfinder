@@ -50,7 +50,7 @@ public class Graph {
 
         this.timeMul = timeMul;
         this.deltaVMul = deltaVMul;
-
+        
         this.neighborDirections = new CubeCoords[]{
             new CubeCoords(1, -1, 0),
             new CubeCoords(1, 0, -1),
@@ -58,6 +58,7 @@ public class Graph {
             new CubeCoords(-1, 1, 0),
             new CubeCoords(-1, 0, 1),
             new CubeCoords(0, -1, 1)};
+        
     }
 
     /**
@@ -68,9 +69,8 @@ public class Graph {
      * (those in the neighborDirections array)
      *
      * Todo: Allow larger vector changes up to some limits. Currently it's hardcoded to 0 (if vector
-     * isn't changed) or 1 (if vector is changed.) Todo: Think how to handle if the path goes out of
-     * the map. This is the case when there are no neighbors. Todo: Clean this up and maybe break it
-     * up to make it more readable.
+     * isn't changed) or 1 (if vector is changed.) Todo: Clean this up and maybe break it up to make
+     * it more readable.
      *
      * @param node The node to find the neighbors of.
      * @return A list of nodes neighboring the given node.
@@ -80,20 +80,22 @@ public class Graph {
 
         // The node the ship gets to with the current vector is always a neighbor,
         // if it exists.
-        CubeCoords destination = VectorMath.sum(CoordTransform.axialToCube(node.getCoords()), node.getVector());
+        CubeCoords destination = VectorMath.sum(node.getCoords(), node.getVector());
 
-        Node potentialNeighbor = new Node(CoordTransform.cubeToAxial(destination), node.getVector(), node, node.getCostSoFar() + neighborCost(0));
+        Node potentialNeighbor = new Node(CoordTransform.cubeToAxial(destination), node.getVector(),
+                node, node.getCostSoFar() + neighborCost(0));
+        
         if (nodeExists(potentialNeighbor)) {
             neighbors.add(potentialNeighbor);
         }
 
         for (CubeCoords direction : neighborDirections) {
-            // All these coord transforms are a mess, refactor to overload the math methods to accept
-            // either.
-            CubeCoords newDestination = VectorMath.sum(destination, direction);
+           CubeCoords newDestination = VectorMath.sum(destination, direction);
 
-            // 
-            potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination), VectorMath.sum(node.getVector(), direction), node, node.getCostSoFar() + neighborCost(1));
+           potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination), 
+                   CoordTransform.cubeToAxial(VectorMath.sum(CoordTransform.axialToCube(node.getVector()), direction)), 
+                   node, node.getCostSoFar() + neighborCost(1));
+           
             if (nodeExists(potentialNeighbor)) {
                 neighbors.add(potentialNeighbor);
             }

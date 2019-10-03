@@ -4,6 +4,7 @@ import Pathfinder.Graph;
 import Data.AxialCoords;
 import Data.CubeCoords;
 import Data.Node;
+import Utility.CoordTransform;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +22,8 @@ public class GraphTest {
 
     @Test
     public void rectangleMapHasAllHexes() {
-        int mapSizeQ = 10;
-        int mapSizeR = 16;
+        int mapSizeQ = 16;
+        int mapSizeR = 10;
         Graph graph = new Graph(mapSizeQ, mapSizeR, 10, 1, 1);
 
         List<AxialCoords> hexesOnMap = new ArrayList<>();
@@ -45,7 +46,7 @@ public class GraphTest {
         }
         
         for (AxialCoords axialCoords : hexesOnMap) {
-            Node node = new Node(axialCoords, new CubeCoords(0, 0, 0), null, 0);
+            Node node = new Node(axialCoords, new AxialCoords(0, 0), null, 0);
             assertTrue(graph.nodeExists(node));
         }
     }
@@ -56,10 +57,10 @@ public class GraphTest {
         // off-by-one errors.
         Graph graph = new Graph(6, 6, 5, 1, 1);
 
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(-1, 0), new CubeCoords(0, 0, 0), null, 0)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(6, 0), new CubeCoords(0, 0, 0), null, 0)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(0, -1), new CubeCoords(0, 0, 0), null, 0)));
-        assertFalse(graph.nodeExists(new Node(new AxialCoords(0, 7), new CubeCoords(0, 0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(-1, 0), new AxialCoords(0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(6, 0), new AxialCoords(0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(0, -1), new AxialCoords(0, 0), null, 0)));
+        assertFalse(graph.nodeExists(new Node(new AxialCoords(0, 7), new AxialCoords(0, 0), null, 0)));
     }
 
     /* These tests temporarily commented out until I figure out whether I want to keep the possiblity
@@ -103,7 +104,7 @@ public class GraphTest {
     public void findNeighborsTestFullSet() {
         Graph graph = new Graph(10, 10, 5, 1, 1);
         // Node comfortably in the middle of the graph.
-        Node node = new Node(new AxialCoords(3, 1), new CubeCoords(0, -2, 2), null, 0);
+        Node node = new Node(new AxialCoords(3, 1), new AxialCoords(0, 2), null, 0);
 
         // This test case is painstakingly worked out on paper.
         AxialCoords[] correctHexCoords = new AxialCoords[]{
@@ -129,7 +130,7 @@ public class GraphTest {
 
         int i = 0;
         while (i < 7) {
-            correctNeighbors[i] = new Node(correctHexCoords[i], correctVectors[i], null, 0);
+            correctNeighbors[i] = new Node(correctHexCoords[i], CoordTransform.cubeToAxial(correctVectors[i]), null, 0);
             i++;
         }
 

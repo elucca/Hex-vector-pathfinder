@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Node {
 
     private final AxialCoords coords;
-    private final CubeCoords vector;
+    private final AxialCoords vector;
     private final int costSoFar;
     private final Node previous;
 
@@ -23,7 +23,7 @@ public class Node {
      * @param previous The previous node the pathfinding algorithm reached this
      * node from. Used to store the complete path if the goal node is found.
      */
-    public Node(AxialCoords coords, CubeCoords vector, Node previous, int costSoFar) {
+    public Node(AxialCoords coords, AxialCoords vector, Node previous, int costSoFar) {
         this.coords = coords;
         this.vector = vector;
         this.previous = previous;
@@ -78,7 +78,7 @@ public class Node {
         return coords;
     }
 
-    public CubeCoords getVector() {
+    public AxialCoords getVector() {
         return vector;
     }
 
