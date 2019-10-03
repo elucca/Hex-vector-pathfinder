@@ -43,8 +43,6 @@ public class Pathfinder {
      * otherwise.
      */
     public Node findPath(Node start, Node goal, Algorithm algorithm) {
-        this.graph = graph;
-
         switch (algorithm) {
             case DIJKSTRA:
                 return Dijkstra(graph, start, goal);
