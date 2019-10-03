@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Temporarily experimenting with pathfinding by hardcoding it there.
-        
+
         Graph graph = new Graph(100, 100, 30, 1, 1);
         Pathfinder pathfinder = new Pathfinder(graph);
 
@@ -33,7 +33,7 @@ public class Main {
             System.out.println(", velocity: " + VectorMath.magnitude(dijkstraNode.getVector()));
             dijkstraNode = dijkstraNode.getPrevious();
         }
-        
+
         System.out.println("");
 
         Node foundAStar = pathfinder.findPath(start, goal, Algorithm.ASTAR_COORD_MANHATTAN);
@@ -44,10 +44,22 @@ public class Main {
             System.out.println(", velocity: " + VectorMath.magnitude(AStarNode.getVector()));
             AStarNode = AStarNode.getPrevious();
         }
-        System.out.println("Not a valid shortest path!");
+        System.out.println("Likely not a valid shortest path on account of an inadmissible heuristic!");
 
         System.out.println("");
-        
+
+        Node found6D = pathfinder.findPath(start, goal, Algorithm.ASTAR_6D_MANHATTAN);
+        System.out.println("A* with 6D Manhattan heuristic, end to start");
+        Node node6D = found6D;
+        while (node6D != null) {
+            System.out.print(node6D);
+            System.out.println(", velocity: " + VectorMath.magnitude(node6D.getVector()));
+            node6D = node6D.getPrevious();
+        }
+        System.out.println("Likely not a valid shortest path on account of an inadmissible heuristic!");
+
+        System.out.println("");
+
         // Performance testing
         System.out.println("Algorithm run times: ");
         TestPath[] testBattery = {new TestPath(start, goal)};

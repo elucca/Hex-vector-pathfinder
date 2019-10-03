@@ -12,21 +12,25 @@ import java.util.Comparator;
  * This heuristic appears to be inadmissible and does not result in the algorithm returning the
  * shortest path.
  */
-public class CoordManhattanComparator implements Comparator<Node> {
+public class ManhattanComparatorHexCoord implements Comparator<Node> {
 
     private final Node goal;
+    private final int timeMul;
+    private final int dVmul;
 
-    public CoordManhattanComparator(Node goal) {
+    public ManhattanComparatorHexCoord(Node goal, int timeMul, int dVmul) {
         this.goal = goal;
+        this.timeMul = timeMul;
+        this.dVmul = dVmul;
     }
 
     private int heuristic(Node node) {
         CubeCoords nodeCoords = CoordTransform.axialToCube(node.getCoords());
         CubeCoords goalCoords = CoordTransform.axialToCube(goal.getCoords());
 
-        return (Math.abs(goalCoords.x - nodeCoords.x)
+        return timeMul * (Math.abs(goalCoords.x - nodeCoords.x)
                 + Math.abs(goalCoords.y - nodeCoords.y)
-                + Math.abs(goalCoords.z - nodeCoords.z)) / 2;
+                + Math.abs(goalCoords.z - nodeCoords.z) / 2);
     }
 
     /**

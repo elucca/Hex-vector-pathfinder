@@ -47,9 +47,9 @@ public class Pathfinder {
             case DIJKSTRA:
                 return pathfindingAlgorithm(graph, start, goal, new DijkstraComparator());
             case ASTAR_COORD_MANHATTAN:
-                return pathfindingAlgorithm(graph, start, goal, new CoordManhattanComparator(goal));
+                return pathfindingAlgorithm(graph, start, goal, new ManhattanComparatorHexCoord(goal, graph.getTimeMul(), graph.getDeltaVMul()));
             default:
-                return null;
+                return pathfindingAlgorithm(graph, start, goal, new ManhattanComparator6D(goal, graph.getTimeMul(), graph.getDeltaVMul()));
         }
     }
 

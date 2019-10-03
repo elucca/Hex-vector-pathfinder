@@ -30,6 +30,9 @@ public class PathfinderTest {
      * Tests that the path is valid in that each state transition it makes is possible. (not
      * necessarily correct in the sense of being the shortest path) This test depends on Graph
      * finding the correct neighbors, which is tested in its own test class.
+     * 
+     * Todo: This is a bit outdated know as it only tests Dijkstra and there are now other 
+     * algorithms.
      */
     @Test
     public void foundPathIsValid() {
@@ -39,7 +42,7 @@ public class PathfinderTest {
         Node start = new Node(new AxialCoords(0, 0), new AxialCoords(0, 0), null, 0);
         Node goal = new Node(new AxialCoords(5, 0), new AxialCoords(0, 0), null, 0);
 
-        Node foundGoal = pathfinder.Dijkstra(graph, start, goal);
+        Node foundGoal = pathfinder.pathfindingAlgorithm(graph, start, goal, new DijkstraComparator());
 
         Node node = foundGoal;
         while (node.getPrevious() != null) {
