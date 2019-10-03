@@ -93,7 +93,7 @@ public class PerformanceTester {
         double secondsTime = TimeUnit.SECONDS.convert((long) nanoTimeTaken, TimeUnit.NANOSECONDS);
 
         System.out.println("Algorithm: " + algorithm);
-        System.out.println("Average time: " + milliTime + "ms");
+        System.out.println("Average time: " + milliTime + " ms");
     }
 
 }

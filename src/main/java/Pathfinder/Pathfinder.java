@@ -1,9 +1,9 @@
 package Pathfinder;
 
-import Data.DijkstraComparator;
 import Data.Node;
 import Utility.MinHeap;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -45,23 +45,27 @@ public class Pathfinder {
     public Node findPath(Node start, Node goal, Algorithm algorithm) {
         switch (algorithm) {
             case DIJKSTRA:
-                return Dijkstra(graph, start, goal);
+                return pathfindingAlgorithm(graph, start, goal, new DijkstraComparator());
+            case ASTAR_COORD_MANHATTAN:
+                return pathfindingAlgorithm(graph, start, goal, new CoordManhattanComparator(goal));
             default:
                 return null;
         }
     }
 
     /**
-     * An implementation of Dijkstra's algorithm to find the shortest path on the given graph.
+     * A generic pathfinding algorithm that functions as Dijkstra's algorithm or A* with various 
+     * heuristics depending on which comparator is supplied to it.
      *
      * @param graph The graph on which the algorithm runs.
      * @param start The starting node.
      * @param goal The goal node.
+     * @param comparator The comparator used to compare the values of nodes for the priority queue.
      * @return The goal node, including where it was reached from, if it is reachable, null
      * otherwise.
      */
-    public Node Dijkstra(Graph graph, Node start, Node goal) {
-        Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
+    public Node pathfindingAlgorithm(Graph graph, Node start, Node goal, Comparator comparator) {
+        Queue<Node> queue = new PriorityQueue<>(comparator);
         Set visited = new HashSet<>();
 
         queue.add(start);

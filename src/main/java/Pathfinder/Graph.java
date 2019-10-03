@@ -50,7 +50,7 @@ public class Graph {
 
         this.timeMul = timeMul;
         this.deltaVMul = deltaVMul;
-        
+
         this.neighborDirections = new CubeCoords[]{
             new CubeCoords(1, -1, 0),
             new CubeCoords(1, 0, -1),
@@ -58,7 +58,7 @@ public class Graph {
             new CubeCoords(-1, 1, 0),
             new CubeCoords(-1, 0, 1),
             new CubeCoords(0, -1, 1)};
-        
+
     }
 
     /**
@@ -84,18 +84,18 @@ public class Graph {
 
         Node potentialNeighbor = new Node(CoordTransform.cubeToAxial(destination), node.getVector(),
                 node, node.getCostSoFar() + neighborCost(0));
-        
+
         if (nodeExists(potentialNeighbor)) {
             neighbors.add(potentialNeighbor);
         }
 
         for (CubeCoords direction : neighborDirections) {
-           CubeCoords newDestination = VectorMath.sum(destination, direction);
+            CubeCoords newDestination = VectorMath.sum(destination, direction);
 
-           potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination), 
-                   CoordTransform.cubeToAxial(VectorMath.sum(CoordTransform.axialToCube(node.getVector()), direction)), 
-                   node, node.getCostSoFar() + neighborCost(1));
-           
+            potentialNeighbor = new Node(CoordTransform.cubeToAxial(newDestination),
+                    CoordTransform.cubeToAxial(VectorMath.sum(CoordTransform.axialToCube(node.getVector()),
+                            direction)), node, node.getCostSoFar() + neighborCost(1));
+
             if (nodeExists(potentialNeighbor)) {
                 neighbors.add(potentialNeighbor);
             }
