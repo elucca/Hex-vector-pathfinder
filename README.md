@@ -17,3 +17,5 @@ Pathfinding with vectors on a hex grid (Tiralabra coursework)
 [Week 3](documentation/progress_report_week_3.md)
 
 [Week 4](documentation/progress_report_week_4.md)
+
+[Week 5](documentation/progress_report_week_5.md)
