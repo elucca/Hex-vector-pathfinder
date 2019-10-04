@@ -1,4 +1,4 @@
-package Pathfinder;
+package Pathfinder.Comparators;
 
 import Data.CubeCoords;
 import Data.Node;

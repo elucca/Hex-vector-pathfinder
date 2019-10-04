@@ -5,6 +5,7 @@
  */
 package Pathfinder;
 
+import Pathfinder.Comparators.DijkstraComparator;
 import Pathfinder.Pathfinder;
 import Pathfinder.Graph;
 import Data.AxialCoords;

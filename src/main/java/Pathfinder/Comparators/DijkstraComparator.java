@@ -1,4 +1,4 @@
-package Pathfinder;
+package Pathfinder.Comparators;
 
 import Data.Node;
 import java.util.Comparator;

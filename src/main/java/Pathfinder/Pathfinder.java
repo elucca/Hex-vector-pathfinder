@@ -1,11 +1,11 @@
 package Pathfinder;
 
 import Data.Node;
+import Pathfinder.Comparators.*;
 import Utility.MinHeap;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -48,13 +48,15 @@ public class Pathfinder {
                 return pathfindingAlgorithm(graph, start, goal, new DijkstraComparator());
             case ASTAR_COORD_MANHATTAN:
                 return pathfindingAlgorithm(graph, start, goal, new ManhattanComparatorHexCoord(goal, graph.getTimeMul(), graph.getDeltaVMul()));
+            case ASTAR_VECTOR:
+                return pathfindingAlgorithm(graph, start, goal, new VectorComparator(goal, graph.getDeltaVMul()));
             default:
                 return pathfindingAlgorithm(graph, start, goal, new ManhattanComparator6D(goal, graph.getTimeMul(), graph.getDeltaVMul()));
         }
     }
 
     /**
-     * A generic pathfinding algorithm that functions as Dijkstra's algorithm or A* with various 
+     * A generic pathfinding algorithm that functions as Dijkstra's algorithm or A* with various
      * heuristics depending on which comparator is supplied to it.
      *
      * @param graph The graph on which the algorithm runs.

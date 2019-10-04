@@ -4,7 +4,7 @@ import Pathfinder.Pathfinder;
 import Pathfinder.Graph;
 import Data.AxialCoords;
 import Data.CubeCoords;
-import Pathfinder.DijkstraComparator;
+import Pathfinder.Comparators.DijkstraComparator;
 import Data.Node;
 import Utility.CoordTransform;
 import Utility.VectorMath;
@@ -25,46 +25,29 @@ public class Main {
         Node start = new Node(new AxialCoords(2, 3), new AxialCoords(0, 0), null, 0);
         Node goal = new Node(new AxialCoords(24, 30), new AxialCoords(3, 0), null, 0);
 
-        Node foundDijkstra = pathfinder.findPath(start, goal, Algorithm.DIJKSTRA);
-        System.out.println("Dijkstra path, end to start: ");
-        Node dijkstraNode = foundDijkstra;
-        while (dijkstraNode != null) {
-            System.out.print(dijkstraNode);
-            System.out.println(", velocity: " + VectorMath.magnitude(dijkstraNode.getVector()));
-            dijkstraNode = dijkstraNode.getPrevious();
+        for (Algorithm algorithm : Algorithm.values()) {
+            printPath(start, goal, pathfinder, algorithm);
         }
-
-        System.out.println("");
-
-        Node foundAStar = pathfinder.findPath(start, goal, Algorithm.ASTAR_COORD_MANHATTAN);
-        System.out.println("A* with hex coord Manhattan heuristic, end to start");
-        Node AStarNode = foundAStar;
-        while (AStarNode != null) {
-            System.out.print(AStarNode);
-            System.out.println(", velocity: " + VectorMath.magnitude(AStarNode.getVector()));
-            AStarNode = AStarNode.getPrevious();
-        }
-        System.out.println("Likely not a valid shortest path on account of an inadmissible heuristic!");
-
-        System.out.println("");
-
-        Node found6D = pathfinder.findPath(start, goal, Algorithm.ASTAR_6D_MANHATTAN);
-        System.out.println("A* with 6D Manhattan heuristic, end to start");
-        Node node6D = found6D;
-        while (node6D != null) {
-            System.out.print(node6D);
-            System.out.println(", velocity: " + VectorMath.magnitude(node6D.getVector()));
-            node6D = node6D.getPrevious();
-        }
-        System.out.println("Likely not a valid shortest path on account of an inadmissible heuristic!");
-
-        System.out.println("");
 
         // Performance testing
         System.out.println("Algorithm run times: ");
         TestPath[] testBattery = {new TestPath(start, goal)};
         PerformanceTester performanceTester = new PerformanceTester(graph, testBattery);
         performanceTester.test();
+    }
+
+    private static void printPath(Node start, Node goal, Pathfinder pathfinder, Algorithm algorithm) {
+        Node found = pathfinder.findPath(start, goal, algorithm);
+        System.out.println("Path found with " + algorithm + ", end to start:");
+        Node current = found;
+
+        while (current != null) {
+            System.out.print(current);
+            System.out.println(", velocity: " + VectorMath.magnitude(current.getVector()));
+            current = current.getPrevious();
+        }
+
+        System.out.println("");
     }
 
     /*
