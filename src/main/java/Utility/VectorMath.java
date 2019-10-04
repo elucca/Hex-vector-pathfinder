@@ -51,4 +51,22 @@ public class VectorMath {
     public static CubeCoords sum(AxialCoords a, AxialCoords b) {
         return sum(CoordTransform.axialToCube(a), CoordTransform.axialToCube(b));
     }
+    
+    /**
+     * Calculates the difference of vector a and vector b.
+     * 
+     * @param a
+     * @param b
+     * @return The difference between a and b.
+     */
+    public static CubeCoords difference(CubeCoords a, CubeCoords b) {
+        CubeCoords minusB = new CubeCoords(-1 * b.x, -1 * b.z, -1 * b.y);
+        return sum(a, minusB);
+    }
+    
+    public static CubeCoords difference(AxialCoords a, AxialCoords b) {
+        return difference(CoordTransform.axialToCube(a), CoordTransform.axialToCube(b));
+    }
+    
+    
 }

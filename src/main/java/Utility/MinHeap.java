@@ -14,7 +14,7 @@ public class MinHeap {
     private Node[] heap;
     private int heapSize;
     private int maxSize;
-    private final int head = 1;
+    private static final int head = 1;
 
     private Comparator comparator;
 

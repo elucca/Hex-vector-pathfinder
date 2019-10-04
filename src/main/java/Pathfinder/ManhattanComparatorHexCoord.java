@@ -28,9 +28,9 @@ public class ManhattanComparatorHexCoord implements Comparator<Node> {
         CubeCoords nodeCoords = CoordTransform.axialToCube(node.getCoords());
         CubeCoords goalCoords = CoordTransform.axialToCube(goal.getCoords());
 
-        return timeMul * (Math.abs(goalCoords.x - nodeCoords.x)
+        return timeMul * ((Math.abs(goalCoords.x - nodeCoords.x)
                 + Math.abs(goalCoords.y - nodeCoords.y)
-                + Math.abs(goalCoords.z - nodeCoords.z) / 2);
+                + Math.abs(goalCoords.z - nodeCoords.z)) / 2);
     }
 
     /**
