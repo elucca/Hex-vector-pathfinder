@@ -43,7 +43,7 @@ public class Main {
 
         while (current != null) {
             System.out.print(current);
-            System.out.println(", velocity: " + VectorMath.magnitude(current.getVector()));
+            System.out.println(", velocity: " + VectorMath.hexLength(current.getVector()) + " hex/turn");
             current = current.getPrevious();
         }
 

@@ -40,6 +40,34 @@ public class VectorMath {
         return (Math.abs(vector.x) + Math.abs(vector.z) + Math.abs(vector.y)) / 2;
     }
 
+    /**
+     * Calculates the distance between hexes a and b in units of hexes.
+     *
+     * @param a The first vector expressed in cube coordinates.
+     * @param b The second vector expressed in cube coordinates.
+     * @return The distance between coordinates a and b in units of hexes.
+     */
+    public static int hexDistance(CubeCoords a, CubeCoords b) {
+        return (Math.abs(a.x - b.x) + Math.abs(a.z - b.z) + Math.abs(a.y - b.y)) / 2;
+    }
+
+    /**
+     * Calculates the distance between hexes a and b in units of hexes.
+     *
+     * @param a The first vector expressed in axial coordinates.
+     * @param b The second vector expressed in axial coordinates.
+     * @return The distance between coordinates a and b in units of hexes.
+     */
+    public static int hexDistance(AxialCoords a, AxialCoords b) {
+        return hexDistance(CoordTransform.axialToCube(a), CoordTransform.axialToCube(b));
+    }
+
+    /**
+     * Calculates the length of the given vector in units of hexes.
+     *
+     * @param vector The vector to calculate the length of expressed in axial coordinates.
+     * @return The length of the vector in units of hexes.
+     */
     public static int hexLength(AxialCoords vector) {
         return hexLength(CoordTransform.axialToCube(vector));
     }
