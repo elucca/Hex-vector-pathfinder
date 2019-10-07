@@ -33,7 +33,10 @@ public class TimeVectorComparator implements Comparator<Node> {
 
     private double calcMinTime(Node node) {
         // Formula: t = 2((-v +- sqrt(v^2 + 2ad)) / 2a)
-        double v = VectorMath.hexLength(node.getVector()); // Velocity in hexes per turn
+        int currVel = VectorMath.hexLength(node.getVector());
+        int goalVel = VectorMath.hexLength(goal.getVector());
+        
+        double v = Math.max(currVel, goalVel); // Velocity in hexes per turn
         double a = 1; // Acceleration in hexes per turn^2, currently always assumed to be 1
         double d = VectorMath.hexDistance(node.getCoords(), goal.getCoords());
         
