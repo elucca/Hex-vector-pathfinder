@@ -30,4 +30,13 @@ public class VectorMathTest {
         assertEquals(1, VectorMath.magnitude(v2), 0.0001);
         assertEquals(0, VectorMath.magnitude(v3), 0.0001);
     }
+
+    @Test
+    public void hexLengthTest() {
+        CubeCoords v1 = new CubeCoords(0, 0, 0);
+        CubeCoords v2 = new CubeCoords(-3, 2, 1);
+
+        assertEquals(0, VectorMath.hexLength(v1));
+        assertEquals(3, VectorMath.hexLength(v2));
+    }
 }

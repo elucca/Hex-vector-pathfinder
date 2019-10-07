@@ -4,9 +4,9 @@ import Data.AxialCoords;
 import Data.CubeCoords;
 
 /**
- * Class for vector math, with vectors represented as cube coordinates.
- * Todo: Add overloads for each combination of cube and axial coords so these coord transforms
- * are all done here and other parts of the program don't have to care.
+ * Class for vector math, with vectors represented as cube coordinates. Todo: Add overloads for each
+ * combination of cube and axial coords so these coord transforms are all done here and other parts
+ * of the program don't have to care.
  */
 public class VectorMath {
 
@@ -31,6 +31,20 @@ public class VectorMath {
     }
 
     /**
+     * Calculates the length of the given vector in units of hexes.
+     *
+     * @param vector The vector to calculate the length of expressed in cube coordinates.
+     * @return The length of the vector in units of hexes.
+     */
+    public static int hexLength(CubeCoords vector) {
+        return (Math.abs(vector.x) + Math.abs(vector.z) + Math.abs(vector.y)) / 2;
+    }
+
+    public static int hexLength(AxialCoords vector) {
+        return hexLength(CoordTransform.axialToCube(vector));
+    }
+
+    /**
      * Calculates the sum of two vectors.
      *
      * @param a The first vector, expressed as cube coordinates.
@@ -51,10 +65,10 @@ public class VectorMath {
     public static CubeCoords sum(AxialCoords a, AxialCoords b) {
         return sum(CoordTransform.axialToCube(a), CoordTransform.axialToCube(b));
     }
-    
+
     /**
      * Calculates the difference of vector a and vector b.
-     * 
+     *
      * @param a
      * @param b
      * @return The difference between a and b.
@@ -63,10 +77,9 @@ public class VectorMath {
         CubeCoords minusB = new CubeCoords(-1 * b.x, -1 * b.z, -1 * b.y);
         return sum(a, minusB);
     }
-    
+
     public static CubeCoords difference(AxialCoords a, AxialCoords b) {
         return difference(CoordTransform.axialToCube(a), CoordTransform.axialToCube(b));
     }
-    
-    
+
 }
