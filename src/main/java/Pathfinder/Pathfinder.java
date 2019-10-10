@@ -46,10 +46,6 @@ public class Pathfinder {
         switch (algorithm) {
             case DIJKSTRA:
                 return pathfindingAlgorithm(graph, start, goal, new DijkstraComparator());
-            case ASTAR_COORD_MANHATTAN:
-                return pathfindingAlgorithm(graph, start, goal, new ManhattanComparatorHexCoord(goal, graph.getTimeMul(), graph.getDeltaVMul()));
-            case ASTAR_6D_MANHATTAN:
-                return pathfindingAlgorithm(graph, start, goal, new ManhattanComparator6D(goal, graph.getTimeMul(), graph.getDeltaVMul()));
             case ASTAR_VECTOR:
                 return pathfindingAlgorithm(graph, start, goal, new VectorComparator(goal, graph.getDeltaVMul()));
             case ASTAR_TIME_VECTOR:

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class PerformanceTester {
 
-    private final int numberOfRuns = 3;
+    private final int numberOfRuns = 6;
     private final Graph graph;
     private final TestPath[] testBattery;
 
