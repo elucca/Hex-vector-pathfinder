@@ -50,21 +50,11 @@ public class MinHeap {
      * @return The node with the minimum value currently in the heap.
      */
     public Node delMin() {
-        //System.out.println("Heap size: " + heapSize);
-        //System.out.println("Node at heapSize: " + heap[heapSize]);
-        
         Node min = heap[head];
         heap[head] = heap[heapSize];
         heapSize--;
-
-        //System.out.println("Pre-heapify");
-        //System.out.println(Arrays.toString(heap));
         heapify(head);
 
-        //System.out.println("Heapify result: ");
-        //System.out.println(Arrays.toString(heap));
-        
-        //print();
         return min;
     }
 
@@ -144,30 +134,6 @@ public class MinHeap {
         }
     }
 
-    /*
-    private void minHeapify(int pos) {
-
-        // If the node is a non-leaf node and greater 
-        // than any of its child 
-        if (!isLeaf(pos)) {
-            if (Heap[pos] > Heap[leftChild(pos)]
-                    || Heap[pos] > Heap[rightChild(pos)]) {
-
-                // Swap with the left child and heapify 
-                // the left child 
-                if (Heap[leftChild(pos)] < Heap[rightChild(pos)]) {
-                    swap(pos, leftChild(pos));
-                    minHeapify(leftChild(pos));
-                } // Swap with the right child and heapify 
-                // the right child 
-                else {
-                    swap(pos, rightChild(pos));
-                    minHeapify(rightChild(pos));
-                }
-            }
-        }
-    }
-     */
     /**
      * Returns the index of the parent node of the node with the given index.
      *
