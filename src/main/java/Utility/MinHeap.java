@@ -1,6 +1,7 @@
 package Utility;
 
 import Data.Node;
+import java.util.Arrays;
 import java.util.Comparator;
 
 /**
@@ -16,7 +17,7 @@ public class MinHeap {
     private int maxSize;
     private static final int head = 1;
 
-    private Comparator comparator;
+    private final Comparator comparator;
 
     /**
      * Construct a new minimum heap which can at maximum hold a number of nodes equal to maxSize.
@@ -49,11 +50,21 @@ public class MinHeap {
      * @return The node with the minimum value currently in the heap.
      */
     public Node delMin() {
+        //System.out.println("Heap size: " + heapSize);
+        //System.out.println("Node at heapSize: " + heap[heapSize]);
+        
         Node min = heap[head];
-        heapSize--;
         heap[head] = heap[heapSize];
+        heapSize--;
+
+        //System.out.println("Pre-heapify");
+        //System.out.println(Arrays.toString(heap));
         heapify(head);
 
+        //System.out.println("Heapify result: ");
+        //System.out.println(Arrays.toString(heap));
+        
+        //print();
         return min;
     }
 
@@ -66,15 +77,15 @@ public class MinHeap {
         if (heapSize >= maxSize) {
             return;
         }
-        
+
         heapSize++;
+        heap[heapSize] = node;
         int i = heapSize;
-        
-        while (i > 1 && parent(i) != -1 && comparator.compare(node, heap[parent(i)]) == -1) {
-            heap[i] = heap[parent(i)];
+
+        while (comparator.compare(heap[i], heap[parent(i)]) < 0) {
+            swap(i, parent(i));
             i = parent(i);
         }
-        heap[i] = node;
     }
 
     /**
@@ -87,18 +98,42 @@ public class MinHeap {
     }
 
     /**
-     * Heapify the node at the given index, i.e. put a node in its correct position and rearrange
-     * the heap array so that it is in fact a heap.
-     *
-     * @param i
+     * Prints a representation of the heap. Specifically, prints the cost so far of each node as
+     * this is the relevant part of them for the heap.
      */
-    private void heapify(int i) {
-        // If node is not a leaf and is larger than either of its children
-        if (!isLeaf(i)) {
-            if (left(i) != -1 && comparator.compare(heap[i], heap[left(i)]) == 1
-                    || left(i) != -1 && comparator.compare(heap[i], heap[right(i)]) == 1) {
+    public void print() {
+        for (int i = 1; i <= heapSize / 2; i++) {
+            StringBuilder string = new StringBuilder();
+            if (heap[i] != null) {
+                string.append(" Parent: " + heap[i].getCostSoFar());
+            }
+
+            if (heap[left(i)] != null) {
+                string.append(" Left: " + heap[left(i)].getCostSoFar());
+            }
+
+            if (heap[right(i)] != null) {
+                string.append(" Right: " + heap[right(i)].getCostSoFar());
+            }
+            System.out.println(string);
+
+            System.out.println();
+        }
+    }
+
+    /**
+     * Heapify the node at the given index, i.e. put a node in its correct position and rearrange
+     * the heap array so that it fulfills the heap conditions.
+     *
+     * @param i The index of the node to heapify.
+     */
+    void heapify(int i) {
+        // If node is not a leaf and is greater than either of its children
+        if (!isEmpty() && !isLeaf(i)) {
+            if (comparator.compare(heap[i], heap[left(i)]) > 0
+                    || comparator.compare(heap[i], heap[right(i)]) > 0) {
                 // If left child is smaller than right child
-                if (comparator.compare(heap[left(i)], heap[right(i)]) == -1) {
+                if (comparator.compare(heap[left(i)], heap[right(i)]) < 0) {
                     swap(i, left(i));
                     heapify(left(i));
                 } else {
@@ -109,6 +144,30 @@ public class MinHeap {
         }
     }
 
+    /*
+    private void minHeapify(int pos) {
+
+        // If the node is a non-leaf node and greater 
+        // than any of its child 
+        if (!isLeaf(pos)) {
+            if (Heap[pos] > Heap[leftChild(pos)]
+                    || Heap[pos] > Heap[rightChild(pos)]) {
+
+                // Swap with the left child and heapify 
+                // the left child 
+                if (Heap[leftChild(pos)] < Heap[rightChild(pos)]) {
+                    swap(pos, leftChild(pos));
+                    minHeapify(leftChild(pos));
+                } // Swap with the right child and heapify 
+                // the right child 
+                else {
+                    swap(pos, rightChild(pos));
+                    minHeapify(rightChild(pos));
+                }
+            }
+        }
+    }
+     */
     /**
      * Returns the index of the parent node of the node with the given index.
      *
@@ -116,12 +175,7 @@ public class MinHeap {
      * @return The index of the parent of the node with the given index.
      */
     private int parent(int i) {
-        int parentIndex = i / 2;
-        if (parentIndex >= heap.length || parentIndex < 0) {
-            return -1;
-        }
-
-        return parentIndex;
+        return i / 2;
     }
 
     /**
@@ -131,12 +185,7 @@ public class MinHeap {
      * @return The index of the left child of the node with the given index. child doesn't exist.
      */
     private int left(int i) {
-        int leftIndex = 2 * i;
-        if (leftIndex >= heap.length || leftIndex < 0) {
-            return -1;
-        }
-
-        return leftIndex;
+        return (2 * i);
     }
 
     /**
@@ -146,12 +195,7 @@ public class MinHeap {
      * @return The index of the right child of the node with the given index.
      */
     private int right(int i) {
-        int rightIndex = 2 * i + 1;
-        if (rightIndex >= heap.length || rightIndex < 0) {
-            return -1;
-        }
-
-        return rightIndex;
+        return (2 * i) + 1;
     }
 
     /**
@@ -173,12 +217,20 @@ public class MinHeap {
      * @param i The index of the node to be evaluated.
      * @return True if the index is a leaf.
      */
-    private boolean isLeaf(int i) {
-        if (i >= heapSize / 2 && i <= heapSize) {
+    boolean isLeaf(int i) {
+        if (i > (heapSize / 2) && i <= heapSize) {
             return true;
         }
 
         return false;
+    }
+
+    public Node[] getHeap() {
+        return heap;
+    }
+
+    public void setHeap(Node[] heap) {
+        this.heap = heap;
     }
 
 }

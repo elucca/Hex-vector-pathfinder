@@ -5,6 +5,9 @@
  */
 package Utility;
 
+import Data.Node;
+import Pathfinder.Comparators.DijkstraComparator;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,29 +20,46 @@ import static org.junit.Assert.*;
  * @author jkesala
  */
 public class MinHeapTest {
-    
-    public MinHeapTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    MinHeap heap;
+
     @Before
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+        this.heap = new MinHeap(100, new DijkstraComparator());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void heapifySingleNodeLeftTest() {
+        Node n1 = new Node(null, null, null, 6);
+        Node n2 = new Node(null, null, null, 4);
+        Node n3 = new Node(null, null, null, 5);
+
+        heap.insert(n1);
+        heap.insert(n2);
+        heap.insert(n3);
+
+        heap.delMin();
+        heap.delMin();
+        heap.delMin();
+    }
+
+    @Test
+    public void isLeafTest() {
+        Node n1 = new Node(null, null, null, 6);
+        Node n2 = new Node(null, null, null, 4);
+        Node n3 = new Node(null, null, null, 5);
+
+        heap.insert(n1);
+        heap.insert(n2);
+        heap.insert(n3);
+
+        assertTrue(heap.isLeaf(2));
+        assertTrue(heap.isLeaf(3));
+        assertFalse(heap.isLeaf(1));
+
+        assertFalse(heap.isLeaf(0));
+
+        heap.delMin();
+        assertFalse(heap.isLeaf(3));
+    }
 }

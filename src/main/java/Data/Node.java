@@ -32,7 +32,8 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" + "coords=" + coords + ", vector=" + vector + ", costSoFar=" + costSoFar + '}';
+        return Integer.toString(costSoFar);
+        //return "Node{" + "coords=" + coords + ", vector=" + vector + ", costSoFar=" + costSoFar + '}';
     }
     
     
