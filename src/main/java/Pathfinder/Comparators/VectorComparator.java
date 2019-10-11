@@ -17,6 +17,9 @@ public class VectorComparator implements Comparator<Node> {
     }
 
     private double heuristic(Node node) {
+        if (node.getCoords() == null) {
+            System.out.println("?? " + node);
+        }
         CubeCoords nodeVector = CoordTransform.axialToCube(node.getVector());
         CubeCoords goalVector = CoordTransform.axialToCube(goal.getVector());
 

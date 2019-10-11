@@ -72,10 +72,18 @@ public class MinHeap {
         heap[heapSize] = node;
         int i = heapSize;
 
-        while (comparator.compare(heap[i], heap[parent(i)]) < 0) {
-            swap(i, parent(i));
-            i = parent(i);
+        // Some kinda messy checks to make sure we don't go outside the heap
+        if (i != -1 && parent(i) != -1) {
+            while (comparator.compare(heap[i], heap[parent(i)]) < 0) {
+                swap(i, parent(i));
+                i = parent(i);
+                
+                if (i == -1 || parent(i) == -1) {
+                    break;
+                }
+            }
         }
+
     }
 
     /**
@@ -135,13 +143,19 @@ public class MinHeap {
     }
 
     /**
-     * Returns the index of the parent node of the node with the given index.
+     * Returns the index of the parent node of the node with the given index if it exists in the
+     * heap.
      *
      * @param i
-     * @return The index of the parent of the node with the given index.
+     * @return The index of the parent of the node with the given index, or -1 if it does't exist.
      */
     private int parent(int i) {
-        return i / 2;
+        int parentIndex = i / 2;
+        if (parentIndex < 1 || parentIndex > heapSize) {
+            return -1;
+        }
+
+        return parentIndex;
     }
 
     /**

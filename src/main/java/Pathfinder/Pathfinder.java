@@ -6,6 +6,7 @@ import Utility.MinHeap;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -66,6 +67,7 @@ public class Pathfinder {
      * @return The goal node, including where it was reached from, if it is reachable, null
      * otherwise.
      */
+    /*
     public Node pathfindingAlgorithm(Graph graph, Node start, Node goal, Comparator comparator) {
         Queue<Node> queue = new PriorityQueue<>(comparator);
         Set visited = new HashSet<>();
@@ -89,19 +91,16 @@ public class Pathfinder {
 
         return null;
     }
-
-    /*
-    // Commented out for now since the heap implementation doesn't work yet.
-    public Node Dijkstra(Graph graph, Node start, Node goal) {
-        //Queue<Node> queue = new PriorityQueue<>(new DijkstraComparator());
-        MinHeap heap = new MinHeap(10000000, new DijkstraComparator());
+     */
+    public Node pathfindingAlgorithm(Graph graph, Node start, Node goal, Comparator comparator) {
+        MinHeap queue = new MinHeap(10000000, comparator);
         Set visited = new HashSet<>();
 
-        heap.insert(start);
+        queue.insert(start);
 
         Node node = null;
-        while (!heap.isEmpty()) {
-            node = heap.delMin();
+        while (!queue.isEmpty()) {
+            node = queue.delMin();
 
             if (node != null && !visited.contains(node)) {
                 visited.add(node);
@@ -110,13 +109,13 @@ public class Pathfinder {
                     return node;
                 }
 
-                heapNeighbors(heap, node);
+                heapNeighbors(queue, node);
             }
         }
 
         return null;
     }
-     */
+
     /**
      * Adds the neighbors of the given node to the collection, which is used by a pathfinding
      * algorithm to pick nodes to be processed. (For example, a stack for a priority queue.) The
@@ -130,13 +129,11 @@ public class Pathfinder {
         collection.addAll(graph.findNeighbors(node));
     }
 
-    /*
-    // Commented out for now since the heap implementation doesn't work yet.
     private void heapNeighbors(MinHeap heap, Node node) {
         List<Node> neighbors = graph.findNeighbors(node);
         for (Node neighbor : neighbors) {
             heap.insert(neighbor);
         }
     }
-     */
+
 }

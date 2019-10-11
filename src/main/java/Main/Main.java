@@ -21,7 +21,7 @@ public class Main {
         // Temporarily experimenting with pathfinding by hardcoding it there.
 
         // Temp heap testing
-
+        /*
         MinHeap heap = new MinHeap(100, new DijkstraComparator());
         heap.insert(new Node(null, null, null, 6));
         heap.insert(new Node(null, null, null, 2));
@@ -32,20 +32,12 @@ public class Main {
         heap.insert(new Node(null, null, null, 3));
         heap.insert(new Node(null, null, null, 5));
 
-        // heap.print();
-        // Insert seems to work.
-        //Node[] heapArray = heap.getHeap();
-        //System.out.println(Arrays.toString(heapArray));
         heap.print();
         while (!heap.isEmpty()) {
             System.out.println(heap.delMin().getCostSoFar());
             Node[] heapArray = heap.getHeap();
-            //System.out.println(Arrays.toString(heapArray));
-            //heap.print();
         }
-
-        //delMin returns the right stuff except somehow there is a duplicate of the highest value,
-        //which replaces some other value.
+        */
 
         Graph graph = new Graph(100, 100, 30, 1, 1);
         Pathfinder pathfinder = new Pathfinder(graph);
