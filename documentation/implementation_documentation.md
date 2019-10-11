@@ -28,6 +28,8 @@ The program is split into the Main, Pathfinder, Data, PerformanceTests and Utili
 
 This package contains the core functionality of the program: The class which defines a graph, and all implemented pathfinding algorithms. It uses members of the Data package to depict nodes and coordinates, and relies on the Utility package for vector math and data structures.
 
+Pathfinding is implemented with a generic algorithm which, depending on the heuristic it runs with (if any), functions as either Dijkstra's algorithm or A* with various heuristics. The algorithm uses a minimum heap to pick the next node to process, which uses a comparator to evaluate nodes by the cost on the path to them so far. These comparators house the heuristic that is used in evaluating this cost, and there is one comparator for each heuristic (and Dijkstra's algorithm, which uses no heuristic). Thus, which comparator is used with the algorithm determines what form of Dijkstra's algorithm or A* it actually takes.
+
 ### Data
 
 The data package contains the data types used by the program: Graph nodes, the two types of coordinates, and comparators for comparing them.
