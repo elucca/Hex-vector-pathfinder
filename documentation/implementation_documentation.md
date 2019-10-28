@@ -1,5 +1,3 @@
-This document is a work in progress and will be updated as the program is completed.
-
 # Implementation
 
 ## Implementing the problem domain
@@ -38,10 +36,23 @@ The data package contains the data types used by the program: Graph nodes, the t
 
 Includes the code for performance testing, detailed in the testing document.
 
+## Pathfinding algorihtms
+
+There are three variations of the pathfinding algorithm in the program:
+- Dijkstra's algorithm, as A* without a heuristic (DIJKSTRA)
+- A* with an exact heuristic based on current and goal velocity vector differences (ASTAR_VECTOR)
+- A* combining the exact vector heuristic with an inexact but admissible heuristic for remaining time to target (ASTAR_TIME_VECTOR)
+
 ## Time and space complexities
 
-To be added once there's more worthwhile results.
+The worst case time complexity of the pathfinding algorithm is O(B^d), where B is the number of neighbors of each node and d is the length of the shortest path. B is more or less constantly 7, as the only exceptions are when the neighbors go outside map bounds or exceed the set maximum velocity. In practice, the average time complexity is better for the variants using a heuristic, but I've not performed analysis on this, other than the performance testing results below.
 
-## Performance testing results.
+The worst case space complexity is O(n) (where n is the number of nodes in the graph), which is attained when every node is expanded and added to the priority queue. In practice all variations of the algorithm implemented will tend to do better, and the one with heuristics will expand fewer nodes for the same reason they work faster: Their progress is directed towards the goal.
 
-To be added.
+## Performance testing results
+
+Tentative results based on testing with typical pathfinding cases, using the Dijkstra's algorithm implementation as a baseline:
+- ASTAR_VECTOR is 2-3 times faster than DIJKSTRA.
+- ASTAR_TIME_VECTOR is 6-7 times faster than DIJKSTRA and 2-3 times faster than ASTAR_VECTOR.
+
+More exhaustive analysis would be beneficial.
