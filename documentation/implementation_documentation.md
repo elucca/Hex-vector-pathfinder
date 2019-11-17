@@ -2,7 +2,7 @@
 
 ## Implementing the problem domain
 
-The problem the program solves is described in detail in the [project specification](documentation/project_specification.md). To perform pathfinding, it is necessary to define the hex grid, velocity vectors and the coordinate systems to be used for them.
+The problem the program solves is described in detail in the [project specification](project_specification.md). To perform pathfinding, it is necessary to define the hex grid, velocity vectors and the coordinate systems to be used for them.
 
 ### The hex grid
 
