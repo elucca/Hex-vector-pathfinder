@@ -29,8 +29,14 @@ Dijkstra's algorithm is relevant to the problem as edge weights will vary depend
 - Goal node (hex coords and movement vector)
 - Maximum movement vector magnitude (i.e. max velocity)
 - Parameters for cost function: Prioritize minimum time, minimum delta-v, or some compromise of the two.
-- (Maximum number of vector changes, maybe)
-- (Obstacles, maybe)
+
+## Goals for future development
+- Handle obstacles on the map
+- Add maximum number of vector changes (max. delta-v) as an input
+- Consider if the current best heuristic can be further improved
+- Consider other performance improvements:
+  - Alternate greedy algorithms, with exact solution used in some cases (recognize edge cases where greedy doesn't work, or just use the exact solution for short searches as those cases tend to be short)
+  - Faster, but inadmissible heuristics
 
 ## Estimated time and space complexities
 
