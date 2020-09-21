@@ -33,6 +33,7 @@ public class TimeVectorComparator implements Comparator<Node> {
 
     private double calcMinTime(Node node) {
         // Formula: t = 2((-v +- sqrt(v^2 + 2ad)) / 2a)
+        // CHECK: Why is this 2ad and not 4ad?
         int currVel = VectorMath.hexLength(node.getVector());
         int goalVel = VectorMath.hexLength(goal.getVector());
         
