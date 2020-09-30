@@ -6,8 +6,6 @@ package Data;
  * type of coordinate is easier to understand and work with, and so is most commonly used in the
  * program. For most calculations, however, cube coordinates are more convenient.
  * 
- * Do not represent vectors with axial coordinates. Use cube coordinates instead.
- * 
  * Axial coordinates can be easily converted to cube coordinates and vice versa, as needed.
  */
 public class AxialCoords {
